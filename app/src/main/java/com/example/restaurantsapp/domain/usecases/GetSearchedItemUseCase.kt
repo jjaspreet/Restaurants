@@ -52,6 +52,7 @@ class GetSearchedItemUseCase @Inject constructor(
                 }
 
                 val job2 = launch {
+
                     listOfMenus?.map {menus ->
                         menus.categories.map {category ->
                             if(category.name.contains(query, true)){
