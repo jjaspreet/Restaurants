@@ -3,9 +3,12 @@ package com.example.restaurantsapp.presentation
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.restaurantsapp.R
 import com.example.restaurantsapp.databinding.ActivityMainBinding
@@ -14,6 +17,7 @@ import com.example.restaurantsapp.presentation.adapter.ItemsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class RestaurantsActivity : AppCompatActivity() {
@@ -31,7 +35,7 @@ class RestaurantsActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view: View = binding.root
         setContentView(view)
-
+        changeStatusBarColour()
        viewModel.setQuery("")
 
         lifecycleScope.launch {
@@ -43,7 +47,6 @@ class RestaurantsActivity : AppCompatActivity() {
                     }
 
                     is SearchedItemUIState.Empty -> {
-
                     }
                     is SearchedItemUIState.Error -> {
 
@@ -66,6 +69,16 @@ class RestaurantsActivity : AppCompatActivity() {
             itemsAdapter = ItemsAdapter(this@RestaurantsActivity, itemsList)
             recyclerView.adapter = itemsAdapter
         }
+    }
+
+    private fun changeStatusBarColour() {
+        val window: Window = getWindow()
+
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.black))
     }
 
 
