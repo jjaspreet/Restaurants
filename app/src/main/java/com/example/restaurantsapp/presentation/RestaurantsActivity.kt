@@ -46,8 +46,6 @@ class RestaurantsActivity : AppCompatActivity() {
                         binding.errorTextView.visibility = View.GONE
                     }
 
-                    is SearchedItemUIState.Empty -> {
-                    }
                     is SearchedItemUIState.Error -> {
 
                         binding.progressBar.visibility = View.GONE
@@ -105,7 +103,6 @@ class RestaurantsActivity : AppCompatActivity() {
                 return true
             }
         })
-
 
         return false
     }

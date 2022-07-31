@@ -6,5 +6,4 @@ sealed class SearchedItemUIState{
     data class Success(val data : SearchedItem): SearchedItemUIState()
     data class Error(val message: String) : SearchedItemUIState()
     object Loading : SearchedItemUIState()
-    object Empty : SearchedItemUIState()
 }
