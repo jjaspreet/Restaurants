@@ -43,13 +43,9 @@ class RestaurantsActivity : AppCompatActivity() {
                 when (it) {
                     is SearchedItemUIState.Loading -> {
                         binding.progressBar.visibility = View.VISIBLE
-                        binding.errorTextView.visibility = View.GONE
                     }
 
                     is SearchedItemUIState.Error -> {
-
-                        binding.progressBar.visibility = View.GONE
-                        binding.errorTextView.text = it.message
 
                     }
                     is SearchedItemUIState.Success -> {
